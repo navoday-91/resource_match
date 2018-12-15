@@ -1,0 +1,6 @@
+Group,Rules
+EG1,(gender=F;age<16;nationality=US)
+EG2,(nationality=India;education=MS)
+EG3,(gender=M;nationality=India;education=MS)
+EG4,(gender=M;education=MS)
+EG5,(engine=3000cc;drive=4W)

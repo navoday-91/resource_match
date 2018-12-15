@@ -1,2 +1,9 @@
 Entity,Attributes
 E1,(gender=M;nationality=India;education=MS;age=30)
+E2,(engine=3000cc)
+E3,(engine=3000cc;drive=2W)
+E4,()
+E5,(gender=F;nationality=US)
+E6,(gender=M;education=MS)
+E7,(nationality=India;education=MS)
+E8,(nationality=US)

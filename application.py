@@ -65,17 +65,18 @@ def parse_rule(rule):
 
 
 def parse_entity_attribute(entity):
-    entity = str.replace(entity, ")", "")
-    entity = str.replace(entity, "(", "")
     entity = entity.split('=')
     return entity[0], entity[1]
 
 
 def match_groups(entity, inequality_operator_inclusion):
+    entity = str.replace(entity, ")", "")
+    entity = str.replace(entity, "(", "")
     entity = entity.split(";")
     entity_attributes = []
-    for attribute in entity:
-        entity_attributes.append((parse_entity_attribute(attribute)))
+    if "=" in entity[0]:
+        for attribute in entity:
+            entity_attributes.append((parse_entity_attribute(attribute)))
     entity_attributes = sorted(entity_attributes, key=lambda x:x[0])
     result_set = set()
     for L in range(0, len(entity_attributes) + 1):
@@ -128,10 +129,13 @@ def match_attribute_values_rules(subset, level, inequality_operator_inclusion):
 
 
 def match_groups_with_loose_rules(entity, inequality_operator_inclusion):
+    entity = str.replace(entity, ")", "")
+    entity = str.replace(entity, "(", "")
     entity = entity.split(";")
     entity_attributes = []
-    for attribute in entity:
-        entity_attributes.append((parse_entity_attribute(attribute)))
+    if "=" in entity[0]:
+        for attribute in entity:
+            entity_attributes.append((parse_entity_attribute(attribute)))
     result_set = in_mem_data_with_loose_rules['Global']
     for attribute, value in entity_attributes:
         temp_attribute_data = None
@@ -188,7 +192,7 @@ if __name__ == '__main__':
                 result = match_groups(entity, inequality_rules_inclusion)
             elif rule_match == "B":
                 result = match_groups_with_loose_rules(entity, inequality_rules_inclusion)
-            print(entity, "=>", result)
+            print("Match Result:\n", entity, "=>", result)
             entity = input("Enter the entity in format: (attribute1=value1;attribute2=value2;....) or 'q' to quit:\n")
 
 
